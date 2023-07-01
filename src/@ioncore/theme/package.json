@@ -1,0 +1,10 @@
+{
+  "name": "@ioncore/theme",
+  "description": "description",
+  "authors": "Lucasion",
+  "version": "1.0.0",
+  "main": "pathToMain",
+  "dependencies": {
+    "react": "^18.2.0"
+  }
+}
