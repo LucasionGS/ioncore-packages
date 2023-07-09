@@ -1,3 +1,94 @@
-.ioncore-button {
-  
+.ic-Button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ic-Button:hover {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+.ic-Button:active {
+  transform: scale(0.92);
+}
+
+.ic-Button--primary {
+  background-color: #4ea4ff;
+  color: white;
+}
+
+.ic-provider--dark .ic-Button--primary {
+  background-color: #00438b;
+  color: white;
+}
+
+.ic-Button--secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.ic-provider--dark .ic-Button--secondary {
+  background-color: #343a40;
+  color: white;
+}
+
+.ic-Button--success {
+  background-color: #16dd45;
+  color: white;
+}
+
+.ic-Button--warning {
+  background-color: #ffc107;
+  color: white;
+}
+
+.ic-Button--danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Define other variants here */
+
+.ic-Button--small {
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+.ic-Button--medium {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.ic-Button--large {
+  padding: 15px 30px;
+  font-size: 18px;
+}
+
+.ic-Button--fullWidth {
+  width: 100%;
+}
+
+.ic-Button-icon {
+  margin: 0;
+  margin-right: 10px;
+}
+
+/* Disabled */
+.ic-Button:disabled {
+  transform: none;
+  filter: brightness(0.5);
+  cursor: not-allowed;
+}
+
+.ic-Button:disabled:hover {
+  transform: none;
+  filter: brightness(0.5);
+  cursor: not-allowed;
 }
