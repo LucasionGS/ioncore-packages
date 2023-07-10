@@ -1,10 +1,14 @@
 {
   "name": "@ioncore/theme",
-  "description": "description",
+  "private": false,
+  "description": "Ioncore theme for React",
   "authors": "Lucasion",
-  "version": "1.0.0",
-  "main": "pathToMain",
+  "version": "1.0.1",
+  "main": "index.js",
   "dependencies": {
     "react": "^18.2.0"
+  },
+  "scripts": {
+    "build": "tsc"
   }
 }
