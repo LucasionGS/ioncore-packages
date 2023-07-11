@@ -6,6 +6,7 @@ import { Select } from "@ioncore/theme/Select/Select";
 import { Checkbox, CheckboxGroup } from "@ioncore/theme/Checkbox";
 import useTheme from "@ioncore/theme/hooks/useTheme";
 import useDarkTheme from "@ioncore/theme/hooks/useDarkTheme";
+import { Input } from "@ioncore/theme/Input/Input";
 
 export default function App() {
   const [theme, setTheme] = useState<"light" | "dark" | "auto">("auto");
@@ -18,10 +19,9 @@ export default function App() {
         { label: "🌞", value: "light" },
         { label: "🌑", value: "dark" }
       ]} />
-      {theme[0].toUpperCase() + theme.slice(1).toLowerCase()} theme:
       <br />
-      Buttons
-      <br />
+      <h1>Documentation</h1>
+      <h2>Buttons</h2>
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button icon={"✔"} variant="success">Success</Button>
@@ -33,19 +33,12 @@ export default function App() {
       <Button disabled icon={"✔"} variant="success">Success</Button>
       <Button disabled icon={"⚠"} variant="warning">Warning</Button>
       <Button disabled icon={"💀"} variant="danger">Danger</Button>
-      <br />
-      <br />
-      Select
-      <br />
+      <h2>Select</h2>
       {/* <code>{`<Select defaultValue="Two" options={["One", "Two", "Three"]} />`}</code> */}
       <Select defaultValue="Two" options={["One", "Two", "Three"]} />
       You can make it a vertical select by passing the <code>direction</code> as <code>"vertical"</code> prop:
       <Select direction="vertical" defaultValue="Two" options={["One", "Two", "Three"]} />
-
-      <br />
-      <br />
-      Checkbox
-      <br />
+      <h2>Checkbox</h2>
       <CheckboxGroup>
         <Checkbox alwaysShowTick label="Checkbox 1 with tick" />
         <Checkbox label="Checkbox 2 without tick" />
@@ -55,12 +48,10 @@ export default function App() {
         <Checkbox alwaysShowTick />
         <Checkbox />
       </CheckboxGroup>
-
-      <br />
-      <br />
-      Paper
-      <br />
+      <h2>Paper</h2>
       <PaperDisplay />
+      <h2>Input</h2>
+      <InputDisplay />
     </Paper>
   );
 
@@ -78,16 +69,30 @@ export default function App() {
     );
   }
 
+  function InputDisplay() {
+    const [value, setValue] = useState("");
+    const [username, setUsername] = useState("admin");
+    const [password, setPassword] = useState("password");
+    return (
+      <>
+        Input is a low-level component that can be used to build other components.
+        <br />
+        <Input label="This is a label" value={value} onChange={(_, newValue) => setValue(newValue)} />
+        <br />
+        <br />
+        It can be used to build a login form:
+        <br />
+        <Input label="Username" value={username} onChange={(_, newValue) => setValue(newValue)} />
+        <Input label="Password" value={password} onChange={(_, newValue) => setValue(newValue)} type="password" />
+      </>
+    );
+  }
+
   return (
     <div>
-      <div style={{
-        display: "inline-block",
-        width: "100vw",
-      }}>
-        <IoncoreProvider theme={{ scheme: theme }}>
-          {content}
-        </IoncoreProvider>
-      </div>
+      <IoncoreProvider theme={{ scheme: theme }}>
+        {content}
+      </IoncoreProvider>
     </div>
   )
 }

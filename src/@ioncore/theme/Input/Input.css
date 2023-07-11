@@ -1,0 +1,23 @@
+.ic-Input {
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 16px;
+  margin: 5px;
+}
+
+.ic-Input-wrapper {
+  display: inline-block;
+}
+
+.ic-Input-label {
+  display: block;
+  margin-top: 4px;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: bold;
+}
+
+.ic-provider--dark .ic-Input-label {
+  color: #e4e4e4;
+}
