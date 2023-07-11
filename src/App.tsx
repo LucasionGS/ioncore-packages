@@ -123,12 +123,16 @@ export default function App() {
       <>
         Input is a low-level component that can be used to build other components.
         <br />
-        <Input label="This is a label" value={value} onChange={(_, newValue) => setValue(newValue)} />
+        <Input label="Left Label" value={value} onChange={(_, newValue) => setValue(newValue)} />
+        <Input label="Center Label" value={value} onChange={(_, newValue) => setValue(newValue)} labelAlign="center" />
+        <Input label="Right Label" value={value} onChange={(_, newValue) => setValue(newValue)} labelAlign="right" />
         <br />
         It can be used to build a login form:
         <br />
         <Input label="Username" value={username} onChange={(_, newValue) => setUsername(newValue)} />
         <Input label="Password" value={password} onChange={(_, newValue) => setPassword(newValue)} type="password" />
+        <br />
+        <Button variant="primary" onClick={() => alert(`Username: ${username}\nPassword: ${password}`)}>Login</Button>
       </>
     );
   }

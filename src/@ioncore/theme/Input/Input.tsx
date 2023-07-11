@@ -8,6 +8,7 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
    * Label displayed before the input
    */
   label?: string;
+  labelAlign?: "left" | "center" | "right";
 }
 
 export function Input({
@@ -15,6 +16,7 @@ export function Input({
   value,
   onChange,
   label,
+  labelAlign = "left",
   ...rest
 }: InputProps) {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -26,9 +28,14 @@ export function Input({
     className || ''
   ];
 
+  const labelClasses = [
+    'ic-Input-label',
+    "ic-Input-label--" + labelAlign
+  ]
+
   return (
     <div className="ic-Input-wrapper">
-      {label && <label className="ic-Input-label">{label}</label>}
+      {label && <label className={labelClasses.join(" ")}>{label}</label>}
       <input className={classes.join(" ")} value={value} onChange={handleChange} {...rest} />
     </div>
   );

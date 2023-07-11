@@ -19,10 +19,18 @@
 
 .ic-Input-label {
   display: block;
-  margin-top: 4px;
-  margin-bottom: 5px;
+  margin: 4px;
   color: #333;
   font-weight: bold;
+  text-align: left;
+}
+
+.ic-Input-label.ic-Input-label--center {
+  text-align: center;
+}
+
+.ic-Input-label.ic-Input-label--right {
+  text-align: right;
 }
 
 .ic-provider--dark .ic-Input-label {
