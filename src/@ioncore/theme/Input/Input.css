@@ -1,9 +1,16 @@
 .ic-Input {
   border: 1px solid #ccc;
+  border-radius: 4px;
   padding: 10px;
   box-sizing: border-box;
   font-size: 16px;
   margin: 5px;
+}
+
+.ic-provider--dark .ic-Input {
+  border: 1px solid #ccc;
+  background-color: #333;
+  color: #e4e4e4;
 }
 
 .ic-Input-wrapper {

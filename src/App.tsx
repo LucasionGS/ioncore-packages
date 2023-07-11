@@ -7,10 +7,48 @@ import { Checkbox, CheckboxGroup } from "@ioncore/theme/Checkbox";
 import useTheme from "@ioncore/theme/hooks/useTheme";
 import useDarkTheme from "@ioncore/theme/hooks/useDarkTheme";
 import { Input } from "@ioncore/theme/Input/Input";
+import { Routes, Router } from "@ioncore/theme";
+import Link from "@ioncore/theme/Link/Link";
+
+const ChangePage = ({ value }: { value: string }) => <div>
+  <Link href="/"><Button variant={value == "/" ? "primary" : "secondary"}>Home</Button></Link>
+  <Link href="/about"><Button variant={value == "/about" ? "primary" : "secondary"}>About</Button></Link>
+  <Link href="/contact"><Button variant={value == "/contact" ? "primary" : "secondary"}>Contact</Button></Link>
+</div>
+
+const routes: Routes = [
+  {
+    path: /^\/$/g,
+    title: "Home",
+    component: () => <div>
+      <ChangePage value="/" />
+      <h1>Home page</h1>
+      <p>This is the home page.</p>
+    </div>
+  },
+  {
+    path: /^\/about$/g,
+    title: "About",
+    component: () => <div>
+      <ChangePage value="/about" />
+      <h1>About page</h1>
+      <p>A page to tell you about us.</p>
+    </div>
+  },
+  {
+    path: /^\/contact$/g,
+    title: "Contact",
+    component: () => <div>
+      <ChangePage value="/contact" />
+      <h1>Contact page</h1>
+      <p>A page to contact us.</p>
+    </div>
+  },
+];
 
 export default function App() {
   const [theme, setTheme] = useState<"light" | "dark" | "auto">("auto");
-  const isDark = useDarkTheme();
+  const [isDark] = useDarkTheme();
 
   const content = (
     <Paper square>
@@ -52,6 +90,14 @@ export default function App() {
       <PaperDisplay />
       <h2>Input</h2>
       <InputDisplay />
+      <h2>Router</h2>
+      <hr />
+      <Router pages={routes} />
+      <hr />
+      The router is a component that can be used to build a website with multiple pages.
+      It will automatically update the page title and the URL, when using the <code>Link</code> component.
+      <br />
+      The content will be updated without reloading the page to maintain a smooth user experience, and the path is updated using the <code>history.pushState</code> API.
     </Paper>
   );
 
@@ -79,11 +125,10 @@ export default function App() {
         <br />
         <Input label="This is a label" value={value} onChange={(_, newValue) => setValue(newValue)} />
         <br />
-        <br />
         It can be used to build a login form:
         <br />
-        <Input label="Username" value={username} onChange={(_, newValue) => setValue(newValue)} />
-        <Input label="Password" value={password} onChange={(_, newValue) => setValue(newValue)} type="password" />
+        <Input label="Username" value={username} onChange={(_, newValue) => setUsername(newValue)} />
+        <Input label="Password" value={password} onChange={(_, newValue) => setPassword(newValue)} type="password" />
       </>
     );
   }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function useDarkTheme() {
+export default function useDarkTheme(): [boolean, React.Dispatch<React.SetStateAction<boolean>>] {
   // Check if the user has set a color scheme preference for dark on their device
   const media = window.matchMedia("(prefers-color-scheme: dark)");
   const prefersDark = media.matches;
@@ -10,5 +10,5 @@ export default function useDarkTheme() {
     setIsDark(e.matches);
   });
 
-  return isDark;
+  return [isDark, setIsDark];
 }

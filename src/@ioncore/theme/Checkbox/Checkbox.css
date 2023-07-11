@@ -1,14 +1,19 @@
 .ic-Checkbox {
   display: inline-block;
   border: none;
-  background-color: #343a40;
-  color: #f0f0f0;
+  background-color: #f0f0f0;
+  color: #343a40;
   padding: 10px;
   margin: 5px;
   cursor: pointer;
   transition: all 0.2s ease;
   user-select: none;
   border-radius: 5px;
+}
+
+.ic-provider--dark .ic-Checkbox {
+  background-color: #343a40;
+  color: #f0f0f0;
 }
 
 .ic-Checkbox--checked {

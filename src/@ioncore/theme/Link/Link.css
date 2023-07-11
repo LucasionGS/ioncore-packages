@@ -1,0 +1,11 @@
+.ic-Link div.ic-Link-block {
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.ic-Link div.ic-Link-block:hover {
+  cursor: pointer;
+  text-decoration: none;
+  background-color: gray;
+}
