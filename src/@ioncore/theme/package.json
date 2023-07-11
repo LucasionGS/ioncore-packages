@@ -9,6 +9,7 @@
     "react": "^18.2.0"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "clean": "node clean.js"
   }
 }

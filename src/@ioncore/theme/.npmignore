@@ -1,0 +1,6 @@
+# Ignore typescript files
+*.ts
+*.tsx
+!*.d.ts
+tsconfig.json
+/clean.js
