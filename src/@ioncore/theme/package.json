@@ -3,7 +3,7 @@
   "private": false,
   "description": "Ioncore theme for React",
   "authors": "Lucasion",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.js",
   "dependencies": {
     "react": "^18.2.0"
