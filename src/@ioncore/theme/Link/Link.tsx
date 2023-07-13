@@ -17,7 +17,7 @@ export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
  * @param props Anchor element properties.
  * @returns 
  */
-export default function Link(props: LinkProps) {
+export function Link(props: LinkProps) {
   const context = React.useContext(RouterContext);
   const { children, block } = props;
 
