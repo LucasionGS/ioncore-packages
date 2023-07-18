@@ -9,6 +9,8 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
    */
   label?: string;
   labelAlign?: "left" | "center" | "right";
+  containerStyle?: React.CSSProperties;
+  containerClassName?: string;
 }
 
 export function Input({
@@ -17,6 +19,8 @@ export function Input({
   onChange,
   label,
   labelAlign = "left",
+  containerStyle = {},
+  containerClassName,
   ...rest
 }: InputProps) {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -34,7 +38,7 @@ export function Input({
   ]
 
   return (
-    <div className="ic-Input-wrapper">
+    <div className={"ic-Input-wrapper " + (containerClassName || "")} style={containerStyle}>
       {label && <label className={labelClasses.join(" ")}>{label}</label>}
       <input className={classes.join(" ")} value={value} onChange={handleChange} {...rest} />
     </div>

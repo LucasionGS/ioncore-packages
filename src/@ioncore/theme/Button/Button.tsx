@@ -13,7 +13,7 @@ export function Button(props: ButtonProps) {
   const {
     variant = "primary",
     size = "medium",
-    color,
+    // color,
     fullWidth = false,
     icon,
     className,

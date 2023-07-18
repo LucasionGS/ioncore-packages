@@ -8,7 +8,7 @@ import useTheme from "@ioncore/theme/hooks/useTheme";
 import useDarkTheme from "@ioncore/theme/hooks/useDarkTheme";
 import { Input } from "@ioncore/theme/Input/Input";
 import { Routes, Router } from "@ioncore/theme";
-import Link from "@ioncore/theme/Link/Link";
+import { Link } from "@ioncore/theme/Link";
 
 const ChangePage = ({ value }: { value: string }) => <div>
   <Link href="/"><Button variant={value == "/" ? "primary" : "secondary"}>Home</Button></Link>
@@ -60,12 +60,14 @@ export default function App() {
       <br />
       <h1>Documentation</h1>
       <h2>Buttons</h2>
+      <Button style={{ backgroundColor: "#ff0fff", color: "#ff0" }}>Custom</Button>
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button icon={"✔"} variant="success">Success</Button>
       <Button icon={"⚠"} variant="warning">Warning</Button>
       <Button icon={"💀"} variant="danger">Danger</Button>
       <br />
+      <Button disabled style={{ backgroundColor: "#ff0fff", color: "#ff0" }}>Custom</Button>
       <Button disabled variant="primary">Primary</Button>
       <Button disabled variant="secondary">Secondary</Button>
       <Button disabled icon={"✔"} variant="success">Success</Button>
@@ -133,6 +135,8 @@ export default function App() {
         <Input label="Password" value={password} onChange={(_, newValue) => setPassword(newValue)} type="password" />
         <br />
         <Button variant="primary" onClick={() => alert(`Username: ${username}\nPassword: ${password}`)}>Login</Button>
+        <br />
+        <Input containerStyle={{ width: "100%" }} style={{ width: "100%" }} label="Custom Styled Input" value={value} onChange={(_, newValue) => setValue(newValue)} />
       </>
     );
   }
