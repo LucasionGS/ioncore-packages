@@ -7,7 +7,7 @@ import { Checkbox, CheckboxGroup } from "@ioncore/theme/Checkbox";
 import useTheme from "@ioncore/theme/hooks/useTheme";
 import useDarkTheme from "@ioncore/theme/hooks/useDarkTheme";
 import { Input } from "@ioncore/theme/Input/Input";
-import { Routes, Router } from "@ioncore/theme";
+import { Routes, Router, Textarea } from "@ioncore/theme";
 import { Link } from "@ioncore/theme/Link";
 
 const ChangePage = ({ value }: { value: string }) => <div>
@@ -121,6 +121,7 @@ export default function App() {
     const [value, setValue] = useState("");
     const [username, setUsername] = useState("admin");
     const [password, setPassword] = useState("password");
+    const [textarea, setTextarea] = useState("Textarea\nWith multiple lines");
     return (
       <>
         Input is a low-level component that can be used to build other components.
@@ -137,6 +138,8 @@ export default function App() {
         <Button variant="primary" onClick={() => alert(`Username: ${username}\nPassword: ${password}`)}>Login</Button>
         <br />
         <Input containerStyle={{ width: "100%" }} style={{ width: "100%" }} label="Custom Styled Input" value={value} onChange={(_, newValue) => setValue(newValue)} />
+        <br />
+        <Textarea label="Textarea" value={textarea} onChange={(_, newValue) => setTextarea(newValue)} />
       </>
     );
   }

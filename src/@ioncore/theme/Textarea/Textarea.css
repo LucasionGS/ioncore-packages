@@ -1,0 +1,39 @@
+.ic-Textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.ic-provider--dark .ic-Textarea {
+  border: 1px solid #ccc;
+  background-color: #333;
+  color: #e4e4e4;
+}
+
+.ic-Textarea-wrapper {
+  display: inline-block;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.ic-Textarea-label {
+  display: block;
+  margin-bottom: 4px;
+  color: #333;
+  font-weight: bold;
+  text-align: left;
+}
+
+.ic-Textarea-label.ic-Textarea-label--center {
+  text-align: center;
+}
+
+.ic-Textarea-label.ic-Textarea-label--right {
+  text-align: right;
+}
+
+.ic-provider--dark .ic-Textarea-label {
+  color: #e4e4e4;
+}
