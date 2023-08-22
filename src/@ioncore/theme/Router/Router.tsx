@@ -50,10 +50,19 @@ export function Router(props: {
   async function getPage(path: string): Promise<ReadyPage> {
     return new Promise(async (resolve, reject) => {
 
-      const page = pages.find(page => page.path.test(path));
+      const page = pages.find(page => {
+        // return [...path.matchAll(page.path)].length > 0;
+        return path.matchAll(page.path).next().value;
+      });
+      
       if (page) {
-        const args: string[] = (page.path.exec(path) || []).slice(1);
+        const foundMatch = [...path.matchAll(page.path)].find(match => match.length > 0);
+        // debugger;
+        const args: string[] = [...(foundMatch || [])].slice(1);
+        console.log(foundMatch);
+        console.log(args);
         const Content: React.ReactNode | React.FC = typeof page.component === "function" ? await page.component(...args) : page.component;
+        
         resolve({
           title: typeof page.title === "function" ? page.title(...args) : page.title,
           content: typeof Content === "function" ? <Content /> : Content,

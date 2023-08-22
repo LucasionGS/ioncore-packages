@@ -14,6 +14,9 @@ const ChangePage = ({ value }: { value: string }) => <div>
   <Link href="/"><Button variant={value == "/" ? "primary" : "secondary"}>Home</Button></Link>
   <Link href="/about"><Button variant={value == "/about" ? "primary" : "secondary"}>About</Button></Link>
   <Link href="/contact"><Button variant={value == "/contact" ? "primary" : "secondary"}>Contact</Button></Link>
+  <Link href="/item/1"><Button variant={value == "/item/1" ? "primary" : "secondary"}>Item 1</Button></Link>
+  <Link href="/item/2"><Button variant={value == "/item/2" ? "primary" : "secondary"}>Item 2</Button></Link>
+  <Link href="/item/3/Another"><Button variant={value == "/item/3" ? "primary" : "secondary"}>Item 3</Button></Link>
 </div>
 
 const routes: Routes = [
@@ -42,6 +45,16 @@ const routes: Routes = [
       <ChangePage value="/contact" />
       <h1>Contact page</h1>
       <p>A page to contact us.</p>
+    </div>
+  },
+  {
+    path: /^\/item\/(\w+)(?:\/(\w+))?$/g,
+    title: "Contact",
+    component: (id, extra) => <div>
+      <ChangePage value={"/item/" + id} />
+      <h1>Item page</h1>
+      <p>Item is {id}</p>
+      {extra && <p>Extra is {extra}</p>}
     </div>
   },
 ];
