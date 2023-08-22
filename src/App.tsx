@@ -21,7 +21,7 @@ const ChangePage = ({ value }: { value: string }) => <div>
 
 const routes: Routes = [
   {
-    path: /^\/$/g,
+    path: /^\/$/,
     title: "Home",
     component: () => <div>
       <ChangePage value="/" />
@@ -30,7 +30,7 @@ const routes: Routes = [
     </div>
   },
   {
-    path: /^\/about$/g,
+    path: /^\/about$/,
     title: "About",
     component: () => <div>
       <ChangePage value="/about" />
@@ -39,7 +39,7 @@ const routes: Routes = [
     </div>
   },
   {
-    path: /^\/contact$/g,
+    path: /^\/contact$/,
     title: "Contact",
     component: () => <div>
       <ChangePage value="/contact" />

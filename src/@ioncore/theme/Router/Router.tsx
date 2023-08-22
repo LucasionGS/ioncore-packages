@@ -51,18 +51,20 @@ export function Router(props: {
     return new Promise(async (resolve, reject) => {
 
       const page = pages.find(page => {
-        // return [...path.matchAll(page.path)].length > 0;
-        return path.matchAll(page.path).next().value;
+        if (page.path.global) {
+          return [...path.matchAll(page.path)].length > 0; 
+        }
+        return path.match(page.path);
       });
-      
+
       if (page) {
-        const foundMatch = [...path.matchAll(page.path)].find(match => match.length > 0);
+        const foundMatch = page.path.global ? [...path.matchAll(page.path)].find(match => match.length > 0) : path.match(page.path);
         // debugger;
         const args: string[] = [...(foundMatch || [])].slice(1);
         console.log(foundMatch);
         console.log(args);
         const Content: React.ReactNode | React.FC = typeof page.component === "function" ? await page.component(...args) : page.component;
-        
+
         resolve({
           title: typeof page.title === "function" ? page.title(...args) : page.title,
           content: typeof Content === "function" ? <Content /> : Content,
