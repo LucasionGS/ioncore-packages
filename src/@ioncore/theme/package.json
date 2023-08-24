@@ -3,9 +3,10 @@
   "private": false,
   "description": "Ioncore theme for React",
   "authors": "Lucasion",
-  "version": "1.0.12",
+  "version": "1.1.0",
   "main": "index.js",
   "dependencies": {
+    "@tabler/icons-react": "^2.32.0",
     "react": "^18.2.0"
   },
   "scripts": {
