@@ -10,7 +10,7 @@ import { Input } from "@ioncore/theme/Input/Input";
 import { Routes, Router, Textarea } from "@ioncore/theme";
 import { Link } from "@ioncore/theme/Link";
 import { ProgressCircle } from "@ioncore/theme/ProgressBar";
-import Modal from "@ioncore/theme/Modal/Modal";
+import { Modal } from "@ioncore/theme/Modal/Modal";
 import { useManagedModal } from "@ioncore/theme/hooks/useManagedModal";
 
 const ChangePage = ({ value }: { value: string }) => <div>
