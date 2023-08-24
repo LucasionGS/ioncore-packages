@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import './SelectInput.css';
-
-export interface SelectOption<T> {
-  label: string;
-  value: T;
-}
+import { SelectOption } from '../Select/Select';
 
 export interface SelectInputProps<T = string> {
   options: (string | SelectOption<T>)[];

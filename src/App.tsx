@@ -9,6 +9,9 @@ import useDarkTheme from "@ioncore/theme/hooks/useDarkTheme";
 import { Input } from "@ioncore/theme/Input/Input";
 import { Routes, Router, Textarea } from "@ioncore/theme";
 import { Link } from "@ioncore/theme/Link";
+import { ProgressCircle } from "@ioncore/theme/ProgressBar";
+import Modal from "@ioncore/theme/Modal/Modal";
+import { useManagedModal } from "@ioncore/theme/hooks/useManagedModal";
 
 const ChangePage = ({ value }: { value: string }) => <div>
   <Link href="/"><Button variant={value == "/" ? "primary" : "secondary"}>Home</Button></Link>
@@ -105,6 +108,8 @@ export default function App() {
       <PaperDisplay />
       <h2>Input</h2>
       <InputDisplay />
+      <h2>Progress Bar</h2>
+      <ProgressDisplay />
       <h2>Router</h2>
       <hr />
       <Router pages={routes} />
@@ -113,6 +118,9 @@ export default function App() {
       It will automatically update the page title and the URL, when using the <code>Link</code> component.
       <br />
       The content will be updated without reloading the page to maintain a smooth user experience, and the path is updated using the <code>history.pushState</code> API.
+
+      <h2>Modal</h2>
+      <ModalDisplay />
     </Paper>
   );
 
@@ -157,11 +165,66 @@ export default function App() {
     );
   }
 
+  function ProgressDisplay() {
+    const [auto, setAuto] = useState(true);
+    const [value, setValue] = useState(0);
+    const [size, setSize] = useState(200);
+    const [max, setMax] = useState(200);
+
+    React.useEffect(() => {
+      if (!auto) return;
+      const interval = setInterval(() => {
+        setValue(value => (value + 1) % (max + 1));
+      }, 100);
+      return () => clearInterval(interval);
+    }, [auto, max]);
+
+    return (
+      <>
+        <Input label="Progress" value={value} onChange={e => setValue(e.target.valueAsNumber)} type="number" />
+        <Checkbox alwaysShowTick label="Auto" checked={auto} onChange={setAuto} />
+        <br />
+        <Input label="Size" value={size} onChange={e => setSize(e.target.valueAsNumber)} type="number" />
+        <Input label="Max" value={max} onChange={e => setMax(e.target.valueAsNumber)} type="number" />
+        <br />
+        <ProgressCircle
+          value={value}
+          size={size}
+          max={max}
+        />
+        <ProgressCircle
+          value={value}
+          size={size}
+          max={max}
+          text={(v, m) => {
+            const percent = Math.round(v / m * 100);
+            return `${percent}%`;
+          }}
+          lineCap="butt"
+        />
+      </>
+    );
+  }
+
+  function ModalDisplay() {
+    const m = useManagedModal(); // This is used to manage the modal state instead of doing it manually.
+    return (
+      <>
+        <Button variant="primary" onClick={() => m.open()}>Open Modal</Button>
+        <m.Modal closeOnOutsideClick>
+          <h1>Modal</h1>
+          <p>This is a modal.</p>
+          <Button onClick={m.close}>Close</Button>
+        </m.Modal>
+      </>
+    );
+  }
+
   return (
     <div>
       <IoncoreProvider theme={{ scheme: theme }}>
         {content}
       </IoncoreProvider>
     </div>
-  )
+  );
 }
