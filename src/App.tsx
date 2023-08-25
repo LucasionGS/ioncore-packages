@@ -7,7 +7,7 @@ import { Checkbox, CheckboxGroup } from "@ioncore/theme/Checkbox";
 import useTheme from "@ioncore/theme/hooks/useTheme";
 import useDarkTheme from "@ioncore/theme/hooks/useDarkTheme";
 import { Input } from "@ioncore/theme/Input/Input";
-import { Routes, Router, Textarea } from "@ioncore/theme";
+import { Routes, Router, Textarea, SelectInput } from "@ioncore/theme";
 import { Link } from "@ioncore/theme/Link";
 import { ProgressCircle } from "@ioncore/theme/ProgressBar";
 import { Modal } from "@ioncore/theme/Modal/Modal";
@@ -94,6 +94,7 @@ export default function App() {
       <Select defaultValue="Two" options={["One", "Two", "Three"]} />
       You can make it a vertical select by passing the <code>direction</code> as <code>"vertical"</code> prop:
       <Select direction="vertical" defaultValue="Two" options={["One", "Two", "Three"]} />
+      <SelectInput defaultValue="Two" options={["One", "Two", "Three"]} />
       <h2>Checkbox</h2>
       <CheckboxGroup>
         <Checkbox alwaysShowTick label="Checkbox 1 with tick" />

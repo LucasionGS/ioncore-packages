@@ -29,6 +29,7 @@ export function SelectInput<const T>(props: SelectInputProps<T>) {
           setSelected(value);
           props.onChange?.(value)
         }}
+        value={value}
       >
         {label}
       </option>
@@ -36,7 +37,10 @@ export function SelectInput<const T>(props: SelectInputProps<T>) {
   }
 
   return (
-    <select className={`ic-SelectInput`}>
+    <select className={`ic-SelectInput`} onChange={e => {
+      setSelected(e.target.value as any);
+      props.onChange?.(e.target.value as any);
+    }}>
       {props.options.map(renderOption)}
     </select>
   );
