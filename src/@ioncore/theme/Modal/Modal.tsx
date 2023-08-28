@@ -5,26 +5,34 @@ import React from "react";
 
 export interface ModalProps {
   children: React.ReactNode;
-  onClose: () => void;
+  onClose: React.MouseEventHandler<HTMLDivElement>;
   opened: boolean;
   closeOnOutsideClick?: boolean;
+  transition?: "none" | "pop" | "slide";
+  hideCloseButton?: boolean;
 }
 
 export function Modal(props: ModalProps) {
-  const { opened, onClose, closeOnOutsideClick = false, children } = props;
-  if (!opened) {
-    return <></>;
+  const { opened, onClose, closeOnOutsideClick = false, children, transition = "pop", hideCloseButton = false } = props;
+  const classes = ["ic-modal"];
+  if (opened) {
+    classes.push("ic-modal--opened");
   }
+  classes.push(`ic-modal--transition-${transition}`);
+  const className = classes.join(" ");
+  
   return (
-    <div className="modal" onClick={e => {
-      closeOnOutsideClick && onClose();
+    <div className={className} onClick={e => {
+      closeOnOutsideClick && onClose(e);
     }}>
-      <Paper className="modal__content" onClick={e => {
+      <Paper className="ic-modal__content" onClick={e => {
         e.stopPropagation();
       }}>
-        <div className="modal__close" onClick={onClose}>
+        {!hideCloseButton && <div className="ic-modal__close" onClick={e => {
+          onClose(e);
+        }}>
           <IconX size={24} />
-        </div>
+        </div>}
         {children}
       </Paper>
     </div>

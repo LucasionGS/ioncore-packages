@@ -15,9 +15,9 @@ import React from "react";
  *   </div>
  * }
  */
-export default function promiseUseHook<T, const TArgs extends any[]>(fn: (...args: TArgs) => PromiseLike<T>) {
+export function promiseUseHook<T, const TArgs extends any[]>(fn: (...args: TArgs) => PromiseLike<T>, defaultValue: T | null = null) {
   return function useHook(...args: TArgs) {
-    const [state, setState] = React.useState<T | null>(null);
+    const [state, setState] = React.useState<T | null>(defaultValue);
     const refresh = (...args: TArgs) => {
       fn(...args).then(setState);
     }

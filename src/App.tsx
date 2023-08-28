@@ -7,10 +7,9 @@ import { Checkbox, CheckboxGroup } from "@ioncore/theme/Checkbox";
 import useTheme from "@ioncore/theme/hooks/useTheme";
 import useDarkTheme from "@ioncore/theme/hooks/useDarkTheme";
 import { Input } from "@ioncore/theme/Input/Input";
-import { Routes, Router, Textarea, SelectInput } from "@ioncore/theme";
+import { Routes, Router, Textarea, SelectInput, ProgressBar } from "@ioncore/theme";
 import { Link } from "@ioncore/theme/Link";
 import { ProgressCircle } from "@ioncore/theme/ProgressBar";
-import { Modal } from "@ioncore/theme/Modal/Modal";
 import { useManagedModal } from "@ioncore/theme/hooks/useManagedModal";
 
 const ChangePage = ({ value }: { value: string }) => <div>
@@ -94,7 +93,7 @@ export default function App() {
       <Select defaultValue="Two" options={["One", "Two", "Three"]} />
       You can make it a vertical select by passing the <code>direction</code> as <code>"vertical"</code> prop:
       <Select direction="vertical" defaultValue="Two" options={["One", "Two", "Three"]} />
-      <SelectInput defaultValue="Two" options={["One", "Two", "Three"]} />
+      <SelectInput value="Two" options={["One", "Two", "Three"]} />
       <h2>Checkbox</h2>
       <CheckboxGroup>
         <Checkbox alwaysShowTick label="Checkbox 1 with tick" />
@@ -202,21 +201,50 @@ export default function App() {
             return `${percent}%`;
           }}
           lineCap="butt"
+          color="white"
+          indeterminate
+        />
+        <ProgressBar
+          value={value}
+          size={size}
+          max={max}
+          lineCap="butt"
+          color="#ff4ee4"
+        />
+        <ProgressBar
+          value={value}
+          size={size}
+          max={max}
+          text={(v, m) => {
+            const percent = Math.round(v / m * 100);
+            return `${percent}%`;
+          }}
+          textCenter
+          lineCap="round"
+          color="#4eff54"
+          indeterminate
         />
       </>
     );
   }
 
   function ModalDisplay() {
-    const m = useManagedModal(); // This is used to manage the modal state instead of doing it manually.
+    const popM = useManagedModal(); // This is used to manage the modal state instead of doing it manually.
+    const slideM = useManagedModal();
     return (
       <>
-        <Button variant="primary" onClick={() => m.open()}>Open Modal</Button>
-        <m.Modal closeOnOutsideClick>
+        <Button variant="primary" onClick={() => popM.open()}>Open Pop Modal</Button>
+        <popM.Modal closeOnOutsideClick transition="pop">
           <h1>Modal</h1>
-          <p>This is a modal.</p>
-          <Button onClick={m.close}>Close</Button>
-        </m.Modal>
+          <p>This is a modal that pops in.</p>
+          <Button onClick={popM.close}>Close</Button>
+        </popM.Modal>
+        <Button variant="secondary" onClick={() => slideM.open()}>Open Slide Modal</Button>
+        <slideM.Modal closeOnOutsideClick transition="slide">
+          <h1>Modal</h1>
+          <p>This is a modal that slides in.</p>
+          <Button onClick={slideM.close}>Close</Button>
+        </slideM.Modal>
       </>
     );
   }

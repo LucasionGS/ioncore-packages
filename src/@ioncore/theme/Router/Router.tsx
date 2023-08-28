@@ -61,8 +61,6 @@ export function Router(props: {
         const foundMatch = page.path.global ? [...path.matchAll(page.path)].find(match => match.length > 0) : path.match(page.path);
         // debugger;
         const args: string[] = [...(foundMatch || [])].slice(1);
-        console.log(foundMatch);
-        console.log(args);
         const Content: React.ReactNode | React.FC = typeof page.component === "function" ? await page.component(...args) : page.component;
 
         resolve({

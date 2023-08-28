@@ -6,18 +6,18 @@ export interface SelectInputProps<T = string> {
   options: (string | SelectOption<T>)[];
   value?: T;
   defaultValue?: T;
-  onChange?: (value: T) => void;
+  onChange?: (value: T, index: number) => void;
 }
 
 export function SelectInput<const T>(props: SelectInputProps<T>) {
-  const _firstValue = props.options[0];
-  const [selected, setSelected] = useState<T>(
-    props.value
-      ?? props.defaultValue
-      ?? typeof _firstValue === 'string' ? _firstValue : _firstValue.value as any
+  const { options, defaultValue } = props;
+  const [selected, setSelected] = useState<number>(
+    (props.value != null ? options.indexOf(props.value as string | SelectOption<T>) : null)
+      ?? (defaultValue ? options.indexOf(defaultValue as string | SelectOption<T>) : null)
+      ?? 0
   );
-  const actualValue = props.value ?? selected;
-  function renderOption(option: string | SelectOption<any>, index: number) {
+  const actualValue = props.value ?? options[selected];
+  function renderOption(option: string | SelectOption<T>, index: number) {
     const value = typeof option === 'string' ? option : option.value;
     const label = typeof option === 'string' ? option : option.label;
 
@@ -25,11 +25,7 @@ export function SelectInput<const T>(props: SelectInputProps<T>) {
       <option
         key={index}
         className={`${value === actualValue ? 'ic-SelectInput-option--selected' : ''}`}
-        onClick={() => {
-          setSelected(value);
-          props.onChange?.(value)
-        }}
-        value={value}
+        value={index}
       >
         {label}
       </option>
@@ -38,10 +34,13 @@ export function SelectInput<const T>(props: SelectInputProps<T>) {
 
   return (
     <select className={`ic-SelectInput`} onChange={e => {
-      setSelected(e.target.value as any);
-      props.onChange?.(e.target.value as any);
-    }}>
-      {props.options.map(renderOption)}
+      const index = +e.target.value;
+      const option = options[index];
+      const value = typeof option === "string" ? option : option.value;
+      setSelected(index);
+      props.onChange?.(value as T, index);
+    }} value={selected}>
+      {options.map(renderOption)}
     </select>
   );
 }
